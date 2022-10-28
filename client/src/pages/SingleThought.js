@@ -2,7 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import ReactionList from '../components/ReactionList';
-
+import Auth from '../utils/auth';
+import ReactionForm from '../components/ReactionForm';
 import { useQuery } from '@apollo/client';
 import { QUERY_THOUGHT } from '../utils/queries';
 
@@ -31,6 +32,7 @@ const SingleThought = (props) => {
         <div className="card-body">
           <p>{thought.thoughtText}</p>
         </div>
+        {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
       </div>
 
       {thought.reactionCount > 0 && (
